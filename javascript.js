@@ -1,6 +1,19 @@
 //GIVEN I am taking a code quiz
 // WHEN I click the start button
 
+//Variables for start button
+var start = document.getElementById("start").addEventListener("click", startTest);
+var counter = document.getElementById("timerActual")
+var timeLeft = 100
+
+
+//Timer starts of click, runs this function
+function startTest(){
+    var countdown = setInterval(function(){
+        timeLeft--;
+        counter.textContent = "Timer: " + timeLeft;
+    }, 1000)
+}
 
 // THEN a timer starts 
 //THEN I am presented with a question
@@ -15,5 +28,3 @@
 
 
 //custom attribute for which answer is the correct one (attribute is data-correct)
-
-alert("js page is connected")
