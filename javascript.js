@@ -15,3 +15,5 @@
 
 
 //custom attribute for which answer is the correct one (attribute is data-correct)
+
+alert("js page is connected")
