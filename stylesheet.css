@@ -8,3 +8,16 @@ header {
 #timerActual {
     text-align: right;
 }
+
+.side {
+    padding-top: 20%; padding-bottom: 20%;
+}
+
+.card {
+    height: 50%;
+    margin-top: 10%;
+}
+
+* {
+    outline: black solid 1px;
+}
