@@ -1,11 +1,22 @@
-//GIVEN I am taking a code quiz
-// WHEN I click the start button
+// object array of questions
+//should be able to reference this array as part of the question function, so I dont have to write a function for each question
+//the aim is to set the content of the referenced answer buttons, for each iteration
+
+var questionArr = [
+    
+];
 
 //Variables for start button
 var start = document.getElementById("start").addEventListener("click", startTest);
-var counter = document.getElementById("timerActual")
-var timeLeft = 100
+var counter = document.getElementById("timerActual");
+var timeLeft = 100;
 
+//variables for question header and answer buttons
+var topQuestion = document.getElementById("topQuestion");
+var answerA = document.getElementById("answer-A");
+var answerB = document.getElementById("answer-B");
+var answerC = document.getElementById("answer-C");
+var answerD = document.getElementById("answer-D");
 
 //Timer starts of click, runs this function
 function startTest(){
@@ -13,10 +24,12 @@ function startTest(){
         timeLeft--;
         counter.textContent = "Timer: " + timeLeft;
     }, 1000)
-}
+};
 
-// THEN a timer starts 
 //THEN I am presented with a question
+function question(){
+
+}
 // WHEN I answer a question(how does code know if its a correct answer)
 // THEN I am presented with another question <----- "another" i.e. Function
 // WHEN I answer a question incorrectly
