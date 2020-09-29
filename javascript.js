@@ -19,15 +19,16 @@ var questionArr = [
 
     
 ];
-x=0;
-score = 10 //amount of questions, each wrong question subtracts
-// or
-//score = 0 each correct answer adds
 
-//Variables for start button
+x = 0; // Represents the question number in the question function
+score = 10 // Same as the amount of questions, and each wrong answer subtracts 1 from score
+
+// Variables for start button
 var start = document.getElementById("start").addEventListener("click", startTest);
+// Variables for timer
 var counter = document.getElementById("timerActual");
 var timeLeft = 10;
+counter.textContent = "Timer: " + timeLeft;
 
 //variables for question header and answer buttons
 var topQuestion = document.getElementById("topQuestion");
@@ -36,12 +37,20 @@ var answerB = document.getElementById("answer-B");
 var answerC = document.getElementById("answer-C");
 var answerD = document.getElementById("answer-D");
 
-//Timer starts of click, runs this function
-function startTest(){
-    var countdown = setInterval(function(){
+// Timer function
+function countdown(){
+    var countBegin = setInterval(function(){
         timeLeft--;
         counter.textContent = "Timer: " + timeLeft;
-    }, 1000);
+        if (timeLeft === 0){
+            clearInterval(countBegin)
+        }; 
+    },1000);
+      
+}
+//Timer starts of click, runs this function
+function startTest(){
+    countdown();
     
     question(0);
 };
@@ -112,10 +121,8 @@ function question(x){
         
         
 };
-if (timeLeft === 0){
-    clearInterval(countdown);
-    alert("times up");
-};
+
+
 // WHEN I answer a question(how does code know if its a correct answer)
 // THEN I am presented with another question <----- "another" i.e. Function
 // WHEN I answer a question incorrectly
