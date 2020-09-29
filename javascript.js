@@ -3,8 +3,21 @@
 //the aim is to set the content of the referenced answer buttons, for each iteration
 
 var questionArr = [
+    {questionActual : "this is the first question",
+     answerActA : "this is the first option",
+     answerActB : "this is the second option",
+     answerActC : "this is the third option",
+     answerActD : "this is the fourth option"},
+
+    {questionActual : "this is the second question",
+     answerActA : "this is the 2nd first option",
+     answerActB : "this is the 2nd second option",
+     answerActC : "this is the 2nd third option",
+     answerActD : "this is the 2nd fourth option"}
+
     
 ];
+console.log(questionArr[1].questionActual)
 
 //Variables for start button
 var start = document.getElementById("start").addEventListener("click", startTest);
