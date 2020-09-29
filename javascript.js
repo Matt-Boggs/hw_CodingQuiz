@@ -12,13 +12,13 @@ var questionArr = [
      answerActD : "this is the 2nd fourth option"},
      
     {questionActual : "this is the third question",
-     answerActA : "this is the 2nd first option",
-     answerActB : "this is the 2nd second option",
+     answerActA : "this is the 3rd first option",
+     answerActB : "this is the 3rd second option",
      answerActC : "this is the answer",
-     answerActD : "this is the 2nd fourth option"}
-
-    
+     answerActD : "this is the 3rd fourth option"}
 ];
+
+
 
 x = 0; // Represents the question number in the question function
 score = 10 // Same as the amount of questions, and each wrong answer subtracts 1 from score
@@ -43,7 +43,8 @@ function countdown(){
         timeLeft--;
         counter.textContent = "Timer: " + timeLeft;
         if (timeLeft === 0){
-            clearInterval(countBegin)
+            clearInterval(countBegin);
+            endTest();
         }; 
     },1000);
       
@@ -53,9 +54,17 @@ function startTest(){
     countdown();// Timer begins
     
     question(0);// First question is asked
+
 };
 
 function endTest(){
+    console.log("test end");
+    topQuestion.textContent = "Your score is " + score + " out of 10";
+    answerA.style.display = "none";
+    answerB.style.display = "none";
+    answerC.style.display = "none";
+    answerD.style.display = "none";
+
     //when the timer reaches 0, or all questions are answered, this function will be called
     // Hide question buttons, and bring up a submission field for initials
     //grab submitted value and score value into local storage
@@ -66,7 +75,13 @@ function correct(){
     document.getElementById("say-incorrect").style.display = "none";
     console.log("correct");
     x++;
-    question(x);    
+    question(x);
+    if (x <= questionArr.length){
+        question(x);
+
+    } else {
+        endTest();
+    }   
 }
 
 function incorrect(){
@@ -76,11 +91,16 @@ function incorrect(){
     score--;
     console.log(score);
     x++;
-    question(x);
+    if (x <= questionArr.length){
+        question(x);
+
+    } else {
+        endTest();
+    }
     
     //display incorrect underneath card
 };
-//the correct and incorrect functions work correctly
+//the correct and incorrect functions are now broken
 
 
 //
@@ -93,6 +113,7 @@ function question(x){
         answerC.textContent = questionArr[x].answerActC;
         answerD.textContent = questionArr[x].answerActD;
     
+        //  Adding and removing eventllisteners is the long way I'm sure
             if (x === 0){
                 answerA.addEventListener("click", correct );
                 answerB.addEventListener("click", incorrect);
@@ -100,17 +121,31 @@ function question(x){
                 answerD.addEventListener("click", incorrect);
             }
             if (x === 1){
+                answerA.removeEventListener("click", correct );
+                answerB.removeEventListener("click", incorrect);
+                answerC.removeEventListener("click", incorrect);
+                answerD.removeEventListener("click", incorrect);
+
                 answerA.addEventListener("click", incorrect);
                 answerB.addEventListener("click", correct);
                 answerC.addEventListener("click", incorrect);
                 answerD.addEventListener("click", incorrect);
             }
             if (x === 2){
+                answerA.removeEventListener("click", incorrect);
+                answerB.removeEventListener("click", correct);
+                answerC.removeEventListener("click", incorrect);
+                answerD.removeEventListener("click", incorrect);
+
                 answerA.addEventListener("click", incorrect );
                 answerB.addEventListener("click", incorrect);
                 answerC.addEventListener("click", correct);
                 answerD.addEventListener("click", incorrect);
             }
+            if (x === questionArr.length){
+                endTest();
+            }
+            
 
                 
             
