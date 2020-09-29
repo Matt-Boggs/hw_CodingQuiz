@@ -27,6 +27,12 @@ header {
     text-align: center;
 }
 
+#say-correct{
+    display: none;
+}
+#say-incorrect {
+    display: none;
+}
 * {
     /* outline: black solid 1px; */
 }
