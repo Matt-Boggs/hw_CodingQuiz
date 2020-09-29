@@ -36,12 +36,19 @@ function startTest(){
     var countdown = setInterval(function(){
         timeLeft--;
         counter.textContent = "Timer: " + timeLeft;
-    }, 1000)
+    }, 1000);
+    question();
 };
 
 //THEN I am presented with a question
 function question(){
-
+    for(i=0;i<questionArr.length;i++){
+        topQuestion.textContent = questionArr[i].questionActual;
+        answerA.textContent = questionArr[i].answerActA;
+        answerB.textContent = questionArr[i].answerActB;
+        answerC.textContent = questionArr[i].answerActC;
+        answerD.textContent = questionArr[i].answerActD;
+    };
 }
 // WHEN I answer a question(how does code know if its a correct answer)
 // THEN I am presented with another question <----- "another" i.e. Function
