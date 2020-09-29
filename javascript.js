@@ -1,7 +1,3 @@
-// object array of questions
-//should be able to reference this array as part of the question function, so I dont have to write a function for each question
-//the aim is to set the content of the referenced answer buttons, for each iteration
-
 var questionArr = [
     {questionActual : "this is the first question",
      answerActA : "this is the answer",
@@ -55,9 +51,7 @@ function correct(){
     document.getElementById("say-incorrect").style.display = "none";
     console.log("correct");
     x++;
-    question(x);
-    
-    //display correct underneath card    
+    question(x);    
 }
 
 function incorrect(){
@@ -65,7 +59,6 @@ function incorrect(){
     document.getElementById("say-incorrect").style.display = "block";
     console.log("incorrect");
     score--;
-    timeLeft-5;
     console.log(score);
     x++;
     question(x);
@@ -85,7 +78,6 @@ function question(x){
         answerC.textContent = questionArr[x].answerActC;
         answerD.textContent = questionArr[x].answerActD;
     
-        //this is a test
             if (x === 0){
                 answerA.addEventListener("click", correct );
                 answerB.addEventListener("click", incorrect);
@@ -116,18 +108,7 @@ function question(x){
                 
 
             
-                //display incorrect, and eventually take time off of timer
-            
-            //move onto next question
-        //
-
-        // if(x > questionArr.length){
-        //     console.log("stop");
-        //     clearInterval(countdown)
-        // } else {
-        //     x++;
-        //     question(x);
-        // }
+                
         
         
 };
