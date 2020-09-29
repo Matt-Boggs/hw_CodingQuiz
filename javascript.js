@@ -37,7 +37,7 @@ var answerB = document.getElementById("answer-B");
 var answerC = document.getElementById("answer-C");
 var answerD = document.getElementById("answer-D");
 
-// Timer function
+// Timer function  // Needed to put the interval clearing if INSIDE of the function
 function countdown(){
     var countBegin = setInterval(function(){
         timeLeft--;
@@ -48,12 +48,18 @@ function countdown(){
     },1000);
       
 }
-//Timer starts of click, runs this function
+//Timer starts with click, runs this function
 function startTest(){
-    countdown();
+    countdown();// Timer begins
     
-    question(0);
+    question(0);// First question is asked
 };
+
+function endTest(){
+    //when the timer reaches 0, or all questions are answered, this function will be called
+    // Hide question buttons, and bring up a submission field for initials
+    //grab submitted value and score value into local storage
+}
 
 function correct(){
     document.getElementById("say-correct").style.display = "block";
