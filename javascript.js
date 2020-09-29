@@ -4,25 +4,34 @@
 
 var questionArr = [
     {questionActual : "this is the first question",
-     answerActA : "this is the first option",
+     answerActA : "this is the answer",
      answerActB : "this is the second option",
      answerActC : "this is the third option",
      answerActD : "this is the fourth option"},
 
     {questionActual : "this is the second question",
      answerActA : "this is the 2nd first option",
-     answerActB : "this is the 2nd second option",
+     answerActB : "this is the answer",
      answerActC : "this is the 2nd third option",
+     answerActD : "this is the 2nd fourth option"},
+     
+    {questionActual : "this is the third question",
+     answerActA : "this is the 2nd first option",
+     answerActB : "this is the 2nd second option",
+     answerActC : "this is the answer",
      answerActD : "this is the 2nd fourth option"}
 
     
 ];
-console.log(questionArr[1].questionActual)
+x=0;
+score = 10 //amount of questions, each wrong question subtracts
+// or
+//score = 0 each correct answer adds
 
 //Variables for start button
 var start = document.getElementById("start").addEventListener("click", startTest);
 var counter = document.getElementById("timerActual");
-var timeLeft = 100;
+var timeLeft = 10;
 
 //variables for question header and answer buttons
 var topQuestion = document.getElementById("topQuestion");
@@ -37,19 +46,95 @@ function startTest(){
         timeLeft--;
         counter.textContent = "Timer: " + timeLeft;
     }, 1000);
-    question();
+    
+    question(0);
 };
 
-//THEN I am presented with a question
-function question(){
-    for(i=0;i<questionArr.length;i++){
-        topQuestion.textContent = questionArr[i].questionActual;
-        answerA.textContent = questionArr[i].answerActA;
-        answerB.textContent = questionArr[i].answerActB;
-        answerC.textContent = questionArr[i].answerActC;
-        answerD.textContent = questionArr[i].answerActD;
-    };
+function correct(){
+    document.getElementById("say-correct").style.display = "block";
+    document.getElementById("say-incorrect").style.display = "none";
+    console.log("correct");
+    x++;
+    question(x);
+    
+    //display correct underneath card    
 }
+
+function incorrect(){
+    document.getElementById("say-correct").style.display = "none";
+    document.getElementById("say-incorrect").style.display = "block";
+    console.log("incorrect");
+    score--;
+    timeLeft-5;
+    console.log(score);
+    x++;
+    question(x);
+    
+    //display incorrect underneath card
+};
+//the correct and incorrect functions work correctly
+
+
+//
+//THEN I am presented with a question
+function question(x){
+    
+        topQuestion.textContent = questionArr[x].questionActual;
+        answerA.textContent = questionArr[x].answerActA;
+        answerB.textContent = questionArr[x].answerActB;
+        answerC.textContent = questionArr[x].answerActC;
+        answerD.textContent = questionArr[x].answerActD;
+    
+        //this is a test
+            if (x === 0){
+                answerA.addEventListener("click", correct );
+                answerB.addEventListener("click", incorrect);
+                answerC.addEventListener("click", incorrect);
+                answerD.addEventListener("click", incorrect);
+            }
+            if (x === 1){
+                answerA.addEventListener("click", incorrect);
+                answerB.addEventListener("click", correct);
+                answerC.addEventListener("click", incorrect);
+                answerD.addEventListener("click", incorrect);
+            }
+            if (x === 2){
+                answerA.addEventListener("click", incorrect );
+                answerB.addEventListener("click", incorrect);
+                answerC.addEventListener("click", correct);
+                answerD.addEventListener("click", incorrect);
+            }
+
+                
+            
+            
+                
+                
+                
+                
+
+                
+
+            
+                //display incorrect, and eventually take time off of timer
+            
+            //move onto next question
+        //
+
+        // if(x > questionArr.length){
+        //     console.log("stop");
+        //     clearInterval(countdown)
+        // } else {
+        //     x++;
+        //     question(x);
+        // }
+        
+        
+};
+if (timeLeft === 0){
+    clearInterval(countdown);
+    alert("times up");
+};
 // WHEN I answer a question(how does code know if its a correct answer)
 // THEN I am presented with another question <----- "another" i.e. Function
 // WHEN I answer a question incorrectly
