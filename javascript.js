@@ -81,7 +81,7 @@ function endTest(){
     card.appendChild(hsName);
     hsName.addEventListener("keydown", function(e) {
         if(e.key === "Enter") {
-            localHs = hsName.value;
+            localHs = hsName.value.toUpperCase();
             console.log(localHs);
             console.log(score)
             saveName();
@@ -173,7 +173,7 @@ function showHS(){
     scorePage = document.getElementById("localScores");
     var yourInit = localStorage.getItem("initials");
     var yourScore = localStorage.getItem("yourScore");
-    scorePage.textContent = yourInit + ":" + yourScore;
+    scorePage.textContent = yourInit + " : " + yourScore;
 }
 
 
