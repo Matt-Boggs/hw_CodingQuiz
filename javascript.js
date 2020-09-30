@@ -45,7 +45,12 @@ function countdown(){
         if (timeLeft === 0){
             clearInterval(countBegin);
             endTest();
-        }; 
+        };
+        if (timeLeft < 0){
+            clearInterval(countBegin);
+            counter.textContent = "Timer:";
+
+        };
     },1000);
       
 }
@@ -63,6 +68,7 @@ function startTest(){
 };
 
 function endTest(){
+    timeLeft = -1
     console.log("test end");
     topQuestion.textContent = "Your score is " + score + " out of " + questionArr.length;
     answerA.style.display = "none";
@@ -70,6 +76,9 @@ function endTest(){
     answerC.style.display = "none";
     answerD.style.display = "none";
 
+    var hsName = document.createElement("input");
+    var card = document.getElementById("input-area");
+    card.appendChild(hsName)
     //when the timer reaches 0, or all questions are answered, this function will be called
     // Hide question buttons, and bring up a submission field for initials
     //grab submitted value and score value into local storage
