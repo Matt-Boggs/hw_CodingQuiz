@@ -196,7 +196,7 @@ function question(x){
 };
 
 function saveName(){
-    console.log("saved")
+    alert("saved")
 }
 // WHEN I answer a question(how does code know if its a correct answer)
 // THEN I am presented with another question <----- "another" i.e. Function
@@ -208,4 +208,4 @@ function saveName(){
 // THEN I can save my initials and score (will learn how to do this 929)
 
 
-//custom attribute for which answer is the correct one (attribute is data-correct)
+
