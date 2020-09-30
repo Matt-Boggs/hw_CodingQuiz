@@ -18,13 +18,12 @@ var questionArr = [
      answerActD : "this is the 3rd fourth option"}
 ];
 
-console.log(questionArr.length)
-
 x = 0; // Represents the question number in the question function
-score = 0 // Same as the amount of questions, and each wrong answer subtracts 1 from score
+score = 0 
 
 // Variables for start button
 var start = document.getElementById("start").addEventListener("click", startTest);
+
 // Variables for timer
 var counter = document.getElementById("timerActual");
 var timeLeft = 10;
@@ -49,10 +48,8 @@ function countdown(){
         if (timeLeft < 0){
             clearInterval(countBegin);
             counter.textContent = "Timer:";
-
         };
-    },1000);
-      
+    },1000);     
 }
 //Timer starts with click, runs this function
 function startTest(){
@@ -62,9 +59,7 @@ function startTest(){
     answerD.style.display = "block";
     timeLeft = 10
     countdown();// Timer begins
-    
     question(0);// First question is asked
-
 };
 
 function endTest(){
@@ -89,11 +84,6 @@ function endTest(){
            saveName();
          }
      });
-
-
-    //when the timer reaches 0, or all questions are answered, this function will be called
-    // Hide question buttons, and bring up a submission field for initials
-    //grab submitted value and score value into local storage
 }
 
 
@@ -101,14 +91,10 @@ function endTest(){
 function correct(){
     document.getElementById("say-correct").style.display = "block";
     document.getElementById("say-incorrect").style.display = "none";
-    console.log("correct");
     x++;
     score++;
-    console.log(score);
-    // question(x);
     if (x < questionArr.length){
         question(x);
-
     } else {
         endTest();
     }   
@@ -125,16 +111,12 @@ function incorrect(){
     } else {
         endTest();
     }
-    
-    //display incorrect underneath card
 };
-//the correct and incorrect functions are now broken
 
 
 //
 //THEN I am presented with a question
 function question(x){
-    
         topQuestion.textContent = questionArr[x].questionActual;
         answerA.textContent = questionArr[x].answerActA;
         answerB.textContent = questionArr[x].answerActB;
@@ -170,34 +152,33 @@ function question(x){
                 answerC.addEventListener("click", correct);
                 answerD.addEventListener("click", incorrect);
             }
+            //and so on, saving styling and content for close to the end
             if (x === questionArr.length){
                 answerA.removeEventListener("click", incorrect );
                 answerB.removeEventListener("click", incorrect);
                 answerC.removeEventListener("click", correct);
                 answerD.removeEventListener("click", incorrect);
                 endTest();
-            }
-            
-
-                
-            
-            
-                
-                
-                
-                
-
-                
-
-            
-                
-        
-        
+            }       
 };
-
+    hsName = document.getElementsByTagName("input");
+    localHs = hsName.value;
 function saveName(){
-    alert("saved")
+    hsName = document.getElementsByTagName("input");
+    localHs = hsName.value;
+    localStorage.setItem("yourScore", score)
+    localStorage.setItem("initials", localHs);
+    console.log(localHs);
+    alert("saved");
 }
+
+function showHS(){
+    console.log("scores");
+    scorePage = document.getElementById("localScores");
+    scorePage.textContent = localStorage.getItem("initials", localHs);
+}
+
+
 // WHEN I answer a question(how does code know if its a correct answer)
 // THEN I am presented with another question <----- "another" i.e. Function
 // WHEN I answer a question incorrectly
