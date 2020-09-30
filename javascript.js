@@ -19,7 +19,7 @@ var questionArr = [
 ];
 
 x = 0; // Represents the question number in the question function
-score = 0 
+score = 0;
 
 // Variables for start button
 var start = document.getElementById("start").addEventListener("click", startTest);
@@ -50,14 +50,14 @@ function countdown(){
             counter.textContent = "Timer:";
         };
     },1000);     
-}
+};
 //Timer starts with click, runs this function
 function startTest(){
     answerA.style.display = "block";
     answerB.style.display = "block";
     answerC.style.display = "block";
     answerD.style.display = "block";
-    timeLeft = 10
+    timeLeft = 10;
     countdown();// Timer begins
     question(0);// First question is asked
 };
@@ -72,7 +72,7 @@ function endTest(){
     answerD.style.display = "none";
 
     var info = document.createElement("h3");
-    info.textContent = "Save your highscore?"
+    info.textContent = "Save your highscore?";
     var hsName = document.createElement("input");
     hsName.setAttribute("type", "text");
     hsName.setAttribute("placeholder", "input your initials here");
@@ -86,8 +86,8 @@ function endTest(){
             console.log(score)
             saveName();
          }
-     });
-}
+    });
+};
 
 
 
@@ -101,8 +101,7 @@ function correct(){
     } else {
         endTest();
     }   
-}
-
+};
 function incorrect(){
     document.getElementById("say-correct").style.display = "none";
     document.getElementById("say-incorrect").style.display = "block";
@@ -120,54 +119,51 @@ function incorrect(){
 //
 //THEN I am presented with a question
 function question(x){
-        topQuestion.textContent = questionArr[x].questionActual;
-        answerA.textContent = questionArr[x].answerActA;
-        answerB.textContent = questionArr[x].answerActB;
-        answerC.textContent = questionArr[x].answerActC;
-        answerD.textContent = questionArr[x].answerActD;
+    topQuestion.textContent = questionArr[x].questionActual;
+    answerA.textContent = questionArr[x].answerActA;
+    answerB.textContent = questionArr[x].answerActB;
+    answerC.textContent = questionArr[x].answerActC;
+    answerD.textContent = questionArr[x].answerActD;
     
-        //  Adding and removing eventllisteners is the long way I'm sure
-            if (x === 0){
-                answerA.addEventListener("click", correct );
-                answerB.addEventListener("click", incorrect);
-                answerC.addEventListener("click", incorrect);
-                answerD.addEventListener("click", incorrect);
-            }
-            if (x === 1){
-                answerA.removeEventListener("click", correct );
-                answerB.removeEventListener("click", incorrect);
-                answerC.removeEventListener("click", incorrect);
-                answerD.removeEventListener("click", incorrect);
+        //  Adding and removing eventlisteners is the long way I'm sure
+        if (x === 0){
+            answerA.addEventListener("click", correct );
+            answerB.addEventListener("click", incorrect);
+            answerC.addEventListener("click", incorrect);
+            answerD.addEventListener("click", incorrect);
+        }
+        if (x === 1){
+            answerA.removeEventListener("click", correct );
+            answerB.removeEventListener("click", incorrect);
+            answerC.removeEventListener("click", incorrect);
+            answerD.removeEventListener("click", incorrect);
 
-                answerA.addEventListener("click", incorrect);
-                answerB.addEventListener("click", correct);
-                answerC.addEventListener("click", incorrect);
-                answerD.addEventListener("click", incorrect);
-            }
-            if (x === 2){
-                answerA.removeEventListener("click", incorrect);
-                answerB.removeEventListener("click", correct);
-                answerC.removeEventListener("click", incorrect);
-                answerD.removeEventListener("click", incorrect);
+            answerA.addEventListener("click", incorrect);
+            answerB.addEventListener("click", correct);
+            answerC.addEventListener("click", incorrect);
+            answerD.addEventListener("click", incorrect);
+        }
+        if (x === 2){
+            answerA.removeEventListener("click", incorrect);
+            answerB.removeEventListener("click", correct);
+            answerC.removeEventListener("click", incorrect);
+            answerD.removeEventListener("click", incorrect);
 
-                answerA.addEventListener("click", incorrect );
-                answerB.addEventListener("click", incorrect);
-                answerC.addEventListener("click", correct);
-                answerD.addEventListener("click", incorrect);
-            }
-            //and so on, saving styling and content for close to the end
-            if (x === questionArr.length){
-                answerA.removeEventListener("click", incorrect );
-                answerB.removeEventListener("click", incorrect);
-                answerC.removeEventListener("click", correct);
-                answerD.removeEventListener("click", incorrect);
-                endTest();
-            }       
+            answerA.addEventListener("click", incorrect );
+            answerB.addEventListener("click", incorrect);
+            answerC.addEventListener("click", correct);
+            answerD.addEventListener("click", incorrect);
+        }
+        if (x === questionArr.length){
+            answerA.removeEventListener("click", incorrect );
+            answerB.removeEventListener("click", incorrect);
+            answerC.removeEventListener("click", correct);
+            answerD.removeEventListener("click", incorrect);
+            endTest();
+        }       
 };
     
 function saveName(){
-    // hsName = document.getElementsByTagName("input");
-    // localHs = hsName.value;
     localStorage.setItem("yourScore", score)
     localStorage.setItem("initials", localHs);
     alert("saved");
@@ -179,16 +175,6 @@ function showHS(){
     var yourScore = localStorage.getItem("yourScore");
     scorePage.textContent = yourInit + ":" + yourScore;
 }
-
-
-// WHEN I answer a question(how does code know if its a correct answer)
-// THEN I am presented with another question <----- "another" i.e. Function
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over  (another function)
-// WHEN the game is over
-// THEN I can save my initials and score (will learn how to do this 929)
 
 
 
