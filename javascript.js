@@ -76,13 +76,27 @@ function endTest(){
     answerC.style.display = "none";
     answerD.style.display = "none";
 
+    var info = document.createElement("h3");
+    info.textContent = "Save your highscore?"
     var hsName = document.createElement("input");
+    hsName.setAttribute("type", "text");
+    hsName.setAttribute("placeholder", "input your initials here");
     var card = document.getElementById("input-area");
-    card.appendChild(hsName)
+    card.appendChild(info);
+    card.appendChild(hsName);
+    hsName.addEventListener("keydown", function(e) {
+        if(e.key === "Enter") {
+           saveName();
+         }
+     });
+
+
     //when the timer reaches 0, or all questions are answered, this function will be called
     // Hide question buttons, and bring up a submission field for initials
     //grab submitted value and score value into local storage
 }
+
+
 
 function correct(){
     document.getElementById("say-correct").style.display = "block";
@@ -181,7 +195,9 @@ function question(x){
         
 };
 
-
+function saveName(){
+    console.log("saved")
+}
 // WHEN I answer a question(how does code know if its a correct answer)
 // THEN I am presented with another question <----- "another" i.e. Function
 // WHEN I answer a question incorrectly
