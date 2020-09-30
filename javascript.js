@@ -18,10 +18,10 @@ var questionArr = [
      answerActD : "this is the 3rd fourth option"}
 ];
 
-
+console.log(questionArr.length)
 
 x = 0; // Represents the question number in the question function
-score = 10 // Same as the amount of questions, and each wrong answer subtracts 1 from score
+score = 0 // Same as the amount of questions, and each wrong answer subtracts 1 from score
 
 // Variables for start button
 var start = document.getElementById("start").addEventListener("click", startTest);
@@ -51,6 +51,11 @@ function countdown(){
 }
 //Timer starts with click, runs this function
 function startTest(){
+    answerA.style.display = "block";
+    answerB.style.display = "block";
+    answerC.style.display = "block";
+    answerD.style.display = "block";
+    timeLeft = 10
     countdown();// Timer begins
     
     question(0);// First question is asked
@@ -59,7 +64,7 @@ function startTest(){
 
 function endTest(){
     console.log("test end");
-    topQuestion.textContent = "Your score is " + score + " out of 10";
+    topQuestion.textContent = "Your score is " + score + " out of " + questionArr.length;
     answerA.style.display = "none";
     answerB.style.display = "none";
     answerC.style.display = "none";
@@ -75,8 +80,10 @@ function correct(){
     document.getElementById("say-incorrect").style.display = "none";
     console.log("correct");
     x++;
-    question(x);
-    if (x <= questionArr.length){
+    score++;
+    console.log(score);
+    // question(x);
+    if (x < questionArr.length){
         question(x);
 
     } else {
@@ -88,10 +95,8 @@ function incorrect(){
     document.getElementById("say-correct").style.display = "none";
     document.getElementById("say-incorrect").style.display = "block";
     console.log("incorrect");
-    score--;
-    console.log(score);
     x++;
-    if (x <= questionArr.length){
+    if (x < questionArr.length){
         question(x);
 
     } else {
@@ -143,6 +148,10 @@ function question(x){
                 answerD.addEventListener("click", incorrect);
             }
             if (x === questionArr.length){
+                answerA.removeEventListener("click", incorrect );
+                answerB.removeEventListener("click", incorrect);
+                answerC.removeEventListener("click", correct);
+                answerD.removeEventListener("click", incorrect);
                 endTest();
             }
             
