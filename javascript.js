@@ -81,7 +81,10 @@ function endTest(){
     card.appendChild(hsName);
     hsName.addEventListener("keydown", function(e) {
         if(e.key === "Enter") {
-           saveName();
+            localHs = hsName.value;
+            console.log(localHs);
+            console.log(score)
+            saveName();
          }
      });
 }
@@ -161,21 +164,20 @@ function question(x){
                 endTest();
             }       
 };
-    hsName = document.getElementsByTagName("input");
-    localHs = hsName.value;
+    
 function saveName(){
-    hsName = document.getElementsByTagName("input");
-    localHs = hsName.value;
+    // hsName = document.getElementsByTagName("input");
+    // localHs = hsName.value;
     localStorage.setItem("yourScore", score)
     localStorage.setItem("initials", localHs);
-    console.log(localHs);
     alert("saved");
 }
 
 function showHS(){
-    console.log("scores");
     scorePage = document.getElementById("localScores");
-    scorePage.textContent = localStorage.getItem("initials", localHs);
+    var yourInit = localStorage.getItem("initials");
+    var yourScore = localStorage.getItem("yourScore");
+    scorePage.textContent = yourInit + ":" + yourScore;
 }
 
 
