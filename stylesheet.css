@@ -2,20 +2,12 @@ header {
     background-color: rgb(222, 229, 247);
 }
 
-#leaderboard {
-}
-
 #timerActual {
     text-align: right;
 }
 
-#start {
-
-}
-
 .side {
     padding-top: 20%; padding-bottom: 20%;
-    /* margin-bottom: 5%; */
 }
 
 .card {
@@ -25,14 +17,27 @@ header {
 }
 .card-header {
     text-align: center;
-}
+    background-color:  rgb(222, 229, 247);
 
+}
+#topQuestion {
+    font-weight: bold;
+    font-size: x-large;
+}
+button {
+    border-radius: 2px 8px 8px 2px;
+    background-color: rgb(222, 229, 247);
+}
+#start {
+    border-radius: 4px;
+    background-color: rgb(2, 150, 2);
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+
+}
 #say-correct{
     display: none;
 }
 #say-incorrect {
     display: none;
-}
-* {
-    /* outline: black solid 1px; */
 }

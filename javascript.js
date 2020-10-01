@@ -19,7 +19,7 @@ var questionArr = [
 ];
 
 x = 0; // Represents the question number in the question function
-score = 0;
+score = 0;// Score counts up for each correct question
 
 // Variables for start button
 var start = document.getElementById("start").addEventListener("click", startTest);
@@ -88,7 +88,6 @@ function endTest(){
          }
     });
 };
-
 
 
 function correct(){
